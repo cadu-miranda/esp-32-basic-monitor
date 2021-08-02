@@ -49,8 +49,8 @@ const showFastData = async (data) => {
 
     try {
 
-        const botaoPressionado = data.dadosMCU.botao_pressionado
-        const valPotenciometro = data.dadosMCU.val_potenciometro
+        const botaoPressionado = data.mcu_data.button_pressed
+        const valPotenciometro = data.mcu_data.potenciometer_value
 
         const gaugePotenciometro = document.querySelector(".gauge_potenciometer");
         const botaoPressionadoCheck = document.querySelector('.button__pressed')
@@ -113,8 +113,8 @@ const mostraDadosLentos = async (dados) => {
 
     try {
 
-        const temperatura = dados.dadosMCU.sensor_temp
-        const umidade = dados.dadosMCU.sensor_umidade
+        const temperatura = dados.mcu_data.dht11_temperature
+        const umidade = dados.mcu_data.dht11_humidity
 
         const gaugeTemperatura = document.querySelector(".gauge_temperature");
         const gaugeUmidade = document.querySelector(".gauge_humidity");
