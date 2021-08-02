@@ -25,7 +25,7 @@ const receiveFastDataReadings = async () => {
 
     try {
 
-        const fastDataURL = ''
+        const fastDataURL = 'http://192.168.0.28/fast_data_readings'
 
         const fastDataResponse = await fetch(fastDataURL)
         const fastDataOutput = await fastDataResponse.json()
@@ -89,7 +89,7 @@ const recebeLeituraLenta = async () => {
 
     try {
 
-        const urlDadosLentos = ''
+        const urlDadosLentos = 'http://192.168.0.28/slow_data_readings'
 
         const respostaDadosLentos = await fetch(urlDadosLentos)
         const dadosLentos = await respostaDadosLentos.json()
