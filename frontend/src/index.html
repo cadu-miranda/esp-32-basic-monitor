@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ESP-32 Basic Monitor</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
+    <link rel="shortcut icon" href="../assets/favicon.jpg" />
+</head>
+
+<body>
+
+    <button class="button" onclick="sendDigitalOutput(this)">OFF</button>
+    <label>PWM Output: <span class="pwmOutputValue"></span></label>
+    <input type="range" id="pwmOutput" class="pwmOutput" min="0" max="255" oninput="sendPWMOutput()">
+
+    <div class="button__pressed"></div>
+
+    <div class="gauge_potenciometer">
+        <div class="gauge_potenciometer__body">
+            <div class="gauge_potenciometer__fill"></div>
+            <div class="gauge_potenciometer__cover"></div>
+        </div>
+    </div>
+
+    <div class="gauge_temperature">
+        <div class="gauge_temperature__body">
+            <div class="gauge_temperature__fill"></div>
+            <div class="gauge_temperature__cover"></div>
+        </div>
+    </div>
+
+    <div class="gauge_humidity">
+        <div class="gauge_humidity__body">
+            <div class="gauge_humidity__fill"></div>
+            <div class="gauge_humidity__cover"></div>
+        </div>
+    </div>
+</body>
+
+</html>

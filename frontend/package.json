@@ -1,0 +1,9 @@
+{
+  "name": "esp-32-basic-monitor",
+  "version": "1.0.0",
+  "description": "## Necessária a instalação da extensão \"Live Server\" do VSCode para rodar a aplicação",
+  "main": "main.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
