@@ -1,6 +1,6 @@
 # ESP32 Basic Monitor (v.0.1.8.2@alpha)
 
-## A very first approach to help people control their MCU remotely.
+## A very first approach to control ESP-32 remotely.
 
 With this project, you can perform:
 
@@ -23,4 +23,4 @@ ESP32 server output has two main routes - one for fast (up to 1s) requests and o
 1. {esp32_ip}/slow_data_readings (For slow readings)
 2. {esp32_ip}/fast_data_readings (For fast readings)
 
-- MCU: DOIT ESP32 DEVKIT V1
+- MCU: ESP32 Dev Module
