@@ -25,7 +25,7 @@ const receiveFastDataReadings = async () => {
 
     try {
 
-        const fastDataURL = 'http://192.168.0.28/fast_data_readings'
+        const fastDataURL = ''
 
         const fastDataResponse = await fetch(fastDataURL)
         const fastDataOutput = await fastDataResponse.json()
@@ -73,7 +73,7 @@ const showFastData = async (data) => {
 
                 return;
 
-            gauge.querySelector(".gauge_potenciometer__fill").style.transform = `rotate(${valPotenciometro / 2048}turn)`;
+            gauge.querySelector(".gauge_potenciometer__fill").style.transform = `rotate(${valPotenciometro / 8192}turn)`;
             gauge.querySelector(".gauge_potenciometer__cover").innerHTML = valPotenciometro;
         }
 
@@ -89,7 +89,7 @@ const recebeLeituraLenta = async () => {
 
     try {
 
-        const urlDadosLentos = 'http://192.168.0.28/slow_data_readings'
+        const urlDadosLentos = ''
 
         const respostaDadosLentos = await fetch(urlDadosLentos)
         const dadosLentos = await respostaDadosLentos.json()

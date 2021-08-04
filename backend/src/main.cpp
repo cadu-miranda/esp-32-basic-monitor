@@ -18,12 +18,12 @@
 #define DHT_PIN 15
 #define DHT_TYPE DHT11
 
-const char *ssid = "";  // your local network name
+const char *ssid = "";     // your local network name
 const char *password = ""; // your network password
 
 char buffer[200];
 
-const byte BUTTON = 4, POTENCIOMETER = A12;
+const byte BUTTON = 4, POTENCIOMETER = A0;
 
 WebServer server(80); // creates a web server in port 80
 DHT dht(DHT_PIN, DHT_TYPE);
