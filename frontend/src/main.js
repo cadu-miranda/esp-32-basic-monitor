@@ -49,22 +49,22 @@ const showFastData = async (data) => {
 
     try {
 
-        const botaoPressionado = data.mcu_data.button_pressed
-        const valPotenciometro = data.mcu_data.potenciometer_value
+        const buttonPressed = data.mcu_data.button_pressed
+        const potenciometerValue = data.mcu_data.potenciometer_value
 
-        const gaugePotenciometro = document.querySelector(".gauge_potenciometer");
-        const botaoPressionadoCheck = document.querySelector('.button__pressed')
+        const potenciometerGauge = document.querySelector(".gauge_potenciometer");
+        const buttonPressedCheck = document.querySelector('.button__pressed')
 
-        if (botaoPressionado == 1) {
+        if (buttonPressed) {
 
-            botaoPressionadoCheck.innerHTML = 'ON'
-            botaoPressionadoCheck.style.backgroundColor = 'green'
+            buttonPressedCheck.innerHTML = 'ON'
+            buttonPressedCheck.style.backgroundColor = 'green'
         }
 
-        if (botaoPressionado == 0) {
+        else if (!buttonPressed) {
 
-            botaoPressionadoCheck.innerHTML = 'OFF'
-            botaoPressionadoCheck.style.backgroundColor = 'red'
+            buttonPressedCheck.innerHTML = 'OFF'
+            buttonPressedCheck.style.backgroundColor = 'red'
         }
 
         const setGaugePotenciometer = (gauge, value) => {
@@ -73,11 +73,11 @@ const showFastData = async (data) => {
 
                 return;
 
-            gauge.querySelector(".gauge_potenciometer__fill").style.transform = `rotate(${valPotenciometro / 8192}turn)`;
-            gauge.querySelector(".gauge_potenciometer__cover").innerHTML = valPotenciometro;
+            gauge.querySelector(".gauge_potenciometer__fill").style.transform = `rotate(${potenciometerValue / 8190}turn)`;
+            gauge.querySelector(".gauge_potenciometer__cover").innerHTML = potenciometerValue;
         }
 
-        setGaugePotenciometer(gaugePotenciometro, 1);
+        setGaugePotenciometer(potenciometerGauge, 1);
 
     } catch (error) {
 
@@ -85,16 +85,16 @@ const showFastData = async (data) => {
     }
 }
 
-const recebeLeituraLenta = async () => {
+const receivesSlowReadings = async () => {
 
     try {
 
-        const urlDadosLentos = ''
+        const slowDataURL = ''
 
-        const respostaDadosLentos = await fetch(urlDadosLentos)
-        const dadosLentos = await respostaDadosLentos.json()
+        const slowDataResponse = await fetch(slowDataURL)
+        const slowData = await slowDataResponse.json()
 
-        mostraDadosLentos(dadosLentos)
+        showSlowData(slowData)
 
     } catch (error) {
 
@@ -103,55 +103,55 @@ const recebeLeituraLenta = async () => {
 
     finally {
 
-        setTimeout(recebeLeituraLenta, 2000)
+        setTimeout(receivesSlowReadings, 2000)
     }
 }
 
-recebeLeituraLenta()
+receivesSlowReadings()
 
-const mostraDadosLentos = async (dados) => {
+const showSlowData = async (data) => {
 
     try {
 
-        const temperatura = dados.mcu_data.dht11_temperature
-        const umidade = dados.mcu_data.dht11_humidity
+        const temperature = data.mcu_data.dht11_temperature
+        const humidity = data.mcu_data.dht11_humidity
 
-        const gaugeTemperatura = document.querySelector(".gauge_temperature");
-        const gaugeUmidade = document.querySelector(".gauge_humidity");
+        const temperatureGauge = document.querySelector(".gauge_temperature");
+        const humidityGauge = document.querySelector(".gauge_humidity");
 
-        const setGaugeTemperature = (gauge, value) => {
+        const setTemperatureGauge = (gauge, value) => {
 
             if (value < 0 || value > 1)
 
                 return;
 
-            gauge.querySelector(".gauge_temperature__fill").style.transform = `rotate(${temperatura / 100}turn)`;
+            gauge.querySelector(".gauge_temperature__fill").style.transform = `rotate(${temperature / 100}turn)`;
 
-            if (temperatura === "nan")
+            if (temperature === "nan")
 
                 gauge.querySelector(".gauge_temperature__cover").innerHTML = '-';
 
-            gauge.querySelector(".gauge_temperature__cover").innerHTML = `${temperatura} °C`;
+            gauge.querySelector(".gauge_temperature__cover").innerHTML = `${temperature} °C`;
         }
 
-        setGaugeTemperature(gaugeTemperatura, 1)
+        setTemperatureGauge(temperatureGauge, 1)
 
-        const setGaugeHumidity = (gauge, value) => {
+        const setHumidityGauge = (gauge, value) => {
 
             if (value < 0 || value > 1)
 
                 return;
 
-            gauge.querySelector(".gauge_humidity__fill").style.transform = `rotate(${umidade / 180}turn)`;
+            gauge.querySelector(".gauge_humidity__fill").style.transform = `rotate(${humidity / 180}turn)`;
 
-            if (umidade === 2147483647)
+            if (humidity === 2147483647)
 
                 gauge.querySelector(".gauge_humidity__cover").innerHTML = "-";
 
-            gauge.querySelector(".gauge_humidity__cover").innerHTML = `${umidade} %`;
+            gauge.querySelector(".gauge_humidity__cover").innerHTML = `${humidity} %`;
         }
 
-        setGaugeHumidity(gaugeUmidade, 1)
+        setHumidityGauge(humidityGauge, 1)
 
     } catch (error) {
 

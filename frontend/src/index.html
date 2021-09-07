@@ -15,7 +15,7 @@
 
 <body>
 
-    <button class="button" onclick="sendDigitalOutput(this)">OFF</button>
+    <button id="led_output" class="button" onclick="sendDigitalOutput(this)">OFF</button>
     <label>PWM Output: <span class="pwmOutputValue"></span></label>
     <input type="range" id="pwmOutput" class="pwmOutput" min="0" max="255" oninput="sendPWMOutput()">
 
