@@ -13,7 +13,7 @@ With this project, you can perform:
 ### To run the ESP-32 code, open a new PlatformIO CLI in the microcontroller folder and type:
 
 ```bash
-> cd microcontroller && pio run --target upload
+> pio run --target upload
 ```
 
 ### To run the server, open a new terminal in the server folder and type:
