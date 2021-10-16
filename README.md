@@ -1,11 +1,11 @@
-# ESP32 Basic Monitor (v.0.1.8.2@alpha)
+# ESP32 Basic Monitor (v.0.1.10.15@alpha)
 
-## A very first approach to control ESP-32 remotely.
+## A very first approach to control ESP-32 remotely
 
 With this project, you can perform:
 
 - Digital Read / Write -> Light up an LED or read the state of a button;
-- Analog Read / PWM Output -> Read a potenciometer/trimpot value or mudule an LED pulse width;
+- Analog Read / PWM Output -> Read a potenciometer/trimpot value or mudule n LED pulse width;
 - Sensor Read (DHT11, BMP280, LDR and much more).
 
 ### To run the API / ESP-32 code, open a new PlatformIO CLI in the project root folder and type:
@@ -18,9 +18,9 @@ With this project, you can perform:
 
 ### Routes
 
-ESP32 server output has two main routes - one for fast (up to 1s) requests and other for slow (between 1s and 5s) requests.
+ESP32 server output has two main routes - one for fast (up to 1s) requests and other for slow (more than 1s) requests.
 
-1. {esp32_ip}/slow_data_readings (For slow readings)
-2. {esp32_ip}/fast_data_readings (For fast readings)
+1. {esp32_ip}/slow_data_readings (For slow data readings)
+2. {esp32_ip}/fast_data_readings (For fast data readings)
 
 - MCU: ESP32 Dev Module

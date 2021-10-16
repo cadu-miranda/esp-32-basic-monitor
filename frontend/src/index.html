@@ -10,16 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <script src="main.js" defer></script>
+    <script src="sender.js" defer></script>
     <link rel="shortcut icon" href="../assets/favicon.jpg" />
 </head>
 
 <body>
+    <div id="bit00_3">
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <div class="slider round">
+                <span class="on">ON</span>
+                <span class="off">OFF</span>
+            </div>
+        </label>
+    </div>
 
-    <button id="led_output" class="button" onclick="sendDigitalOutput(this)">OFF</button>
     <label>PWM Output: <span class="pwmOutputValue"></span></label>
     <input type="range" id="pwmOutput" class="pwmOutput" min="0" max="255" oninput="sendPWMOutput()">
 
-    <div class="button__pressed"></div>
+    <div class=" button__pressed"></div>
 
     <div class="gauge_potenciometer">
         <div class="gauge_potenciometer__body">

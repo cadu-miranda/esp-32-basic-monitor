@@ -1,18 +1,3 @@
-const sendDigitalOutput = (e) => {
-
-    e.innerHTML = e.innerHTML == 'ON' ? 'OFF' : 'ON'
-
-    e.style.backgroundColor = 'red'
-
-    if (e.innerHTML === 'ON')
-
-        e.style.backgroundColor = 'green'
-
-    else
-
-        e.style.backgroundColor = 'red'
-}
-
 const sendPWMOutput = () => {
 
     const slider = document.querySelector('.pwmOutput').value
@@ -25,7 +10,7 @@ const receiveFastDataReadings = async () => {
 
     try {
 
-        const fastDataURL = ''
+        const fastDataURL = 'http://YOUR_ESP-32_IP_ADDRESS/fast_data_readings'
 
         const fastDataResponse = await fetch(fastDataURL)
         const fastDataOutput = await fastDataResponse.json()
@@ -89,7 +74,7 @@ const receivesSlowReadings = async () => {
 
     try {
 
-        const slowDataURL = ''
+        const slowDataURL = 'http://YOUR_ESP-32_IP_ADDRESS/slow_data_readings'
 
         const slowDataResponse = await fetch(slowDataURL)
         const slowData = await slowDataResponse.json()

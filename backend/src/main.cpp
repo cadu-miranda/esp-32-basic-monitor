@@ -3,11 +3,16 @@
 
   Sends:
 
-  * DHT11 temperature and humidity data (connected to #PIN_5);
-  * Potenciometer data (connected to #PIN_A0);
-  * Button state (connected to #PIN_4) to Web Server.
+  * DHT11 temperature and humidity data (connected to GPIO15);
+  * Potenciometer data (connected to ADC0);
+  * Button state (connected to GPIO4).
 
-  -> OBS: Data is sent using JSON format.
+  Receives:
+
+  * LED Control State (ON/OFF);
+  * LED PWM Control
+
+  -> OBS: Data is sent and received using JSON format.
 */
 
 #include <Adafruit_Sensor.h>
@@ -20,14 +25,17 @@
 #define DHT_PIN 15
 #define DHT_TYPE DHT11
 
-const char *ssid = "";     // your local network name
-const char *password = ""; // your network password
+const char *SSID = "";  // your local network name
+const char *PASSWORD = ""; // your network password
+
+const byte BUTTON = 4, LED = 23, POTENCIOMETER = A0, PWM_LED = 32,
+           ledChannel = 0, pwmResolution = 8;
+
+const int interval = 1000, pwmFrequency = 5000;
+
+unsigned long previousMillis = 0;
 
 char buffer[512];
-
-const byte BUTTON = 4, LED = 23, POTENCIOMETER = A0;
-unsigned long previousMillis = 0;
-const long interval = 1000;
 
 WebServer server(80); // creates a web server in port 80
 DHT dht(DHT_PIN, DHT_TYPE);
@@ -46,12 +54,15 @@ void setup(void) {
   pinMode(BUTTON, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
 
+  ledcSetup(ledChannel, pwmFrequency, pwmResolution);
+  ledcAttachPin(PWM_LED, ledChannel);
+
   dht.begin();
 
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(SSID);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(SSID, PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
 
@@ -65,12 +76,14 @@ void setup(void) {
   Serial.println(WiFi.localIP());
 
   server.on(
-      "/fast_data_readings", // URL: [http://{esp-32_adress}/fast_data_readings]
+      "/fast_data_readings", // URL:
+                             // http://YOUR_ESP-32_IP_ADDRESS/fast_data_readings
       handleFastDataReading); // Requests up to 1s
 
   server.on(
-      "/slow_data_readings", // URL: [http://{esp-32_adress}/slow_data_readings]
-      handleSlowDataReading); // Requests between 1s - 5s
+      "/slow_data_readings", // URL:
+                             // http://YOUR_ESP-32_IP_ADDRESS/slow_data_readings
+      handleSlowDataReading); // Requests for more than 1s
 
   server.begin();
 }
@@ -127,7 +140,7 @@ void handleReadCommandFromServer(void) {
 
     HTTPClient http;
 
-    http.begin("");
+    http.begin("http://YOUR_LOCAL_IP_ADDRESS:3000");
 
     int httpCode = http.GET();
 
@@ -136,7 +149,6 @@ void handleReadCommandFromServer(void) {
       String payload = http.getString();
 
       Serial.println(httpCode);
-
       Serial.println(payload);
 
       char json[512];
@@ -156,6 +168,7 @@ void handleReadCommandFromServer(void) {
       Serial.println(String(led_state) + " - " + String(pwm_value) + "\n");
 
       led_state ? digitalWrite(LED, 1) : digitalWrite(LED, 0);
+      ledcWrite(ledChannel, pwm_value);
     }
 
     else
