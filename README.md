@@ -1,4 +1,6 @@
-# ESP32 Basic Monitor (v.0.1.10.15@alpha)
+# ESP32 Basic Monitor (v.0.2.10.16)
+
+- PlatformIO VSCode extension is needed for this project to run.
 
 ## A very first approach to control ESP-32 remotely
 
@@ -8,13 +10,19 @@ With this project, you can perform:
 - Analog Read / PWM Output -> Read a potenciometer/trimpot value or mudule n LED pulse width;
 - Sensor Read (DHT11, BMP280, LDR and much more).
 
-### To run the API / ESP-32 code, open a new PlatformIO CLI in the project root folder and type:
+### To run the ESP-32 code, open a new PlatformIO CLI in the microcontroller folder and type:
 
 ```bash
-> cd backend && pio run --target upload
+> cd microcontroller && pio run --target upload
 ```
 
-### To run the Webpage and monitor your ESP-32, install the "Live Server" extension for VSCode, go to (frontend > src > index.html) and click the "Go Live" button in the bottom right corner (A webpage should be opened in few seconds and it will acess the ESP-32 Webserver).
+### To run the server, open a new terminal in the server folder and type:
+
+```bash
+> yarn && yarn start
+```
+
+### To run the Webpage and monitor/control your ESP-32, install the "Live Server" extension for VSCode, go to (frontend > src > index.html) and click the "Go Live" button in the bottom right corner (A webpage should be opened in few seconds and it will access the ESP-32 Basic Monitor page).
 
 ### Routes
 

@@ -10,7 +10,7 @@
   Receives:
 
   * LED Control State (ON/OFF);
-  * LED PWM Control
+  * LED PWM Control.
 
   -> OBS: Data is sent and received using JSON format.
 */
@@ -140,7 +140,7 @@ void handleReadCommandFromServer(void) {
 
     HTTPClient http;
 
-    http.begin("http://YOUR_LOCAL_IP_ADDRESS:3000");
+    http.begin("http://YOUR_LOCAL_IP_ADDRESS:3000/");
 
     int httpCode = http.GET();
 
