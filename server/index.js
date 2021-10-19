@@ -12,7 +12,9 @@ app.use(json())
 app.get('/', (req, res) => {
 
     fs.readFile('log.txt', 'utf8', (err, data) => {
+
         if (err) {
+
             console.error(err)
             return
         }

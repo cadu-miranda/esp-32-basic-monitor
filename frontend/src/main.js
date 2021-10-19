@@ -10,7 +10,7 @@ const receiveFastDataReadings = async () => {
 
     try {
 
-        const fastDataURL = 'http://YOUR_ESP-32_IP_ADDRESS/fast_data_readings'
+        const fastDataURL = 'http://YOUR_ESP-32-IP_ADDRESS/fast_data_readings'
 
         const fastDataResponse = await fetch(fastDataURL)
         const fastDataOutput = await fastDataResponse.json()
@@ -74,7 +74,7 @@ const receivesSlowReadings = async () => {
 
     try {
 
-        const slowDataURL = 'http://YOUR_ESP-32_IP_ADDRESS/slow_data_readings'
+        const slowDataURL = 'http://YOUR_ESP-32-IP_ADDRESS/slow_data_readings'
 
         const slowDataResponse = await fetch(slowDataURL)
         const slowData = await slowDataResponse.json()

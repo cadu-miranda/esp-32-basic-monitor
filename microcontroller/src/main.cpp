@@ -25,7 +25,7 @@
 #define DHT_PIN 15
 #define DHT_TYPE DHT11
 
-const char *SSID = "";  // your local network name
+const char *SSID = "";     // your local network name
 const char *PASSWORD = ""; // your network password
 
 const byte BUTTON = 4, LED = 23, POTENCIOMETER = A0, PWM_LED = 32,

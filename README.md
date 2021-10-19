@@ -22,6 +22,8 @@ With this project, you can perform:
 > yarn && yarn start
 ```
 
+- Note that you should run two different VSCode instances (two different windows): one for the server and other for the webpage.
+
 ### To run the Webpage and monitor/control your ESP-32, install the "Live Server" extension for VSCode, go to (frontend > src > index.html) and click the "Go Live" button in the bottom right corner (A webpage should be opened in few seconds and it will access the ESP-32 Basic Monitor page).
 
 ### Routes
